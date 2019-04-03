@@ -11,9 +11,9 @@ mongoose.connect('mongodb://localhost:27017/xp', { useNewUrlParser: true })
     .then(() => console.log('Connected to Mongo'))
     .catch(e => console.log('Something went wrong', e))
 
-const getUsersController = require('./controllers/getUsers')
-const getUserController = require('./controllers/getUser')
-const getUserIdController = require('./controllers/getUserId')
+const getUsersApiController = require('./controllers/getUsersApi')
+const getUserApiController = require('./controllers/getUserApi')
+const getUserIdApiController = require('./controllers/getUserIdApi')
 const submitUserController = require('./controllers/submitUser')
 
 app.use(bodyParser.json())
@@ -31,10 +31,11 @@ app.get('/', (req, res) => {
     res.render('layouts/index.html')
 })
 
-app.get('/api/users', getUsersController)
-app.get('/api/users/id', getUserIdController)
-app.get('/api/users/:userId/stats', getUserController)
-app.post('/api/users/submit', submitUserController)
+app.get('/api/users', getUsersApiController)
+app.get('/api/users/id', getUserIdApiController)
+app.get('/api/users/:userId/stats', getUserApiController)
+
+app.post('/users/submit', submitUserController)
 
 app.listen(4000, () => {
     console.log('App listening on port 4000...')

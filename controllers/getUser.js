@@ -1,4 +1,5 @@
 const https = require('../services/https')
+const User = require('../database/models/User')
 
 module.exports = (req, res) => {
     let userId = req.params.userId
@@ -13,9 +14,11 @@ module.exports = (req, res) => {
     res.setHeader('Content-Type', 'application/json')
 
     let handleSuccess = data => {
-        res.end(JSON.stringify({
-            data
-        }))
+        User.create(data, (error, user) => {
+            res.end(JSON.stringify({
+                data
+            }))
+        })
     }
 
     let handleFailure = error => {

@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
     seasonWindow: String,
     devices: [String],
     data: Object,
+    overallData: Object,
     dateAdded: {
         type: Date,
         default: Date.now

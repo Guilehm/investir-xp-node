@@ -28,7 +28,7 @@ let nunjucksOptions = {
 nunjucks.configure(VIEWS_DIR, nunjucksOptions)
 
 app.get('/', (req, res) => {
-    res.render('layouts/base.html')
+    res.render('layouts/index.html')
 })
 
 app.get('/users', getUsersController)

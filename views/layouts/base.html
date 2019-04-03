@@ -11,39 +11,9 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="jumbotron">
-        <div class="container">
-            <!-- <h1 class="display-4">Hello world!</h1> -->
-            <p class="lead">API.</p>
-            <hr class="my-4">
-            <p>Track your data.</p>
-            <a class="btn btn-primary btn-lg" href="" role="button">learn more</a>
-        </div>
-    </div>
 
-    <div class="container">
-        <form action="/users/id" method="get" target="_blank">
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <label class="" for="user_id">Get user id</label>
-                    <input type="text" class="form-control mb-2" name="username" id="username" placeholder="username" required>
-                    <button type="submit" class="btn btn-primary mb-2">track</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="container">
-        <form action="/users/submit" method="post" target="_blank">
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <label class="" for="user_id">Get user stats</label>
-                    <input type="text" class="form-control mb-2" name="userId" id="userId" placeholder="user id" required>
-                    <button type="submit" class="btn btn-primary mb-2">track</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    {% block content %}
+    {% endblock %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

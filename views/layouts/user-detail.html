@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">{{ user.epicName }}</h1>
+        <hr class="my-4">
+        <p>{{ user.seasonWindow }}</p>
+        <p class="lead">{{ user.dateAdded }}</p>
+    </div>
+</div>
+{% endblock %}

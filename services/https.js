@@ -2,11 +2,10 @@ const https = require('https');
 
 const CONNECTION_TIMEOUT = 1000
 
-function getUrlData(url = 'https://jsonplaceholder.typicode.com/users') {
+function getUrlData(url) {
 
     return new Promise((resolve, reject) => {
         let dealWithResponse = response => {
-
             let data = ''
             response.on('data', dataChunk => data += dataChunk)
             response.on('end', () => {
@@ -15,10 +14,7 @@ function getUrlData(url = 'https://jsonplaceholder.typicode.com/users') {
                     resolve(obj)
                 } catch (e) {
                     reject(e)
-                }
-            })
-
-        }
+                }})}
 
         let request = https
             .get(url, dealWithResponse)

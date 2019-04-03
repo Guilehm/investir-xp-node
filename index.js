@@ -14,6 +14,8 @@ mongoose.connect('mongodb://localhost:27017/xp', { useNewUrlParser: true })
 const getUsersApiController = require('./controllers/getUsersApi')
 const getUserApiController = require('./controllers/getUserApi')
 const getUserIdApiController = require('./controllers/getUserIdApi')
+
+const userDetailController = require('./controllers/userDetail')
 const submitUserController = require('./controllers/submitUser')
 
 app.use(bodyParser.json())
@@ -31,11 +33,12 @@ app.get('/', (req, res) => {
     res.render('layouts/index.html')
 })
 
-app.get('/api/users', getUsersApiController)
-app.get('/api/users/id', getUserIdApiController)
-app.get('/api/users/:userId/stats', getUserApiController)
+app.get('/api/users/', getUsersApiController)
+app.get('/api/users/id/', getUserIdApiController)
+app.get('/api/users/:userId/stats/', getUserApiController)
 
-app.post('/users/submit', submitUserController)
+app.get('/users/:epicName/', userDetailController)
+app.post('/users/submit/', submitUserController)
 
 app.listen(4000, () => {
     console.log('App listening on port 4000...')

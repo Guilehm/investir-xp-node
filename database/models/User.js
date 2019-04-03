@@ -7,6 +7,10 @@ const UserSchema = new mongoose.Schema({
     seasonWindow: String,
     devices: [String],
     data: Object,
+    dateAdded: {
+        type: Date,
+        default: Date.now
+    },
 })
 
 const User = mongoose.model('User', UserSchema)

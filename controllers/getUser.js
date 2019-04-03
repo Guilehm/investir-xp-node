@@ -1,10 +1,10 @@
 const https = require('../services/https')
 
 module.exports = (req, res) => {
-    let userId = req.params.user_id
+    let userId = req.params.userId
     if (!userId) {
         res.status(400).json({
-            error: 'Param user is required'
+            error: 'user id is required'
         })
     }
 

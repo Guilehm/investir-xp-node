@@ -1,8 +1,14 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const app = new express()
+
+mongoose.connect('mongodb://localhost:27017/xp', { useNewUrlParser: true })
+    .then(() => console.log('Connected to Mongo'))
+    .catch(e => console.log('Something went wrong', e))
+
 
 const getUserController = require('./controllers/getUser')
 const getUserIdController = require('./controllers/getUserId')

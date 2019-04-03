@@ -31,10 +31,10 @@ app.get('/', (req, res) => {
     res.render('layouts/index.html')
 })
 
-app.get('/users', getUsersController)
-app.get('/users/id', getUserIdController)
-app.get('/users/:userId/stats', getUserController)
-app.post('/users/submit', submitUserController)
+app.get('/api/users', getUsersController)
+app.get('/api/users/id', getUserIdController)
+app.get('/api/users/:userId/stats', getUserController)
+app.post('/api/users/submit', submitUserController)
 
 app.listen(4000, () => {
     console.log('App listening on port 4000...')

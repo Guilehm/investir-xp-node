@@ -21,11 +21,11 @@ module.exports = (req, res) => {
         })
     }
 
-    let handleFailure = error => {
+    let handleError = error => {
         res.end(JSON.stringify({
             error: error,
         }))
     }
 
-    https(endpoint).then(handleSuccess, handleFailure)
+    https(endpoint).then(handleSuccess, handleError)
 }

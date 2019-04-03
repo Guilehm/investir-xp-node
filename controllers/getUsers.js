@@ -15,7 +15,7 @@ module.exports = (req, res) => {
     }
 
     User.find({}, (err, user) => {
-        if (err) return handleError(err);
+        if (err) return handleError(err)
         handleSuccess(user)
     });
 

@@ -1,5 +1,4 @@
 const express = require('express')
-const path = require('path')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const nunjucks = require('nunjucks')
@@ -12,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017/xp', { useNewUrlParser: true })
     .then(() => console.log('Connected to Mongo'))
     .catch(e => console.log('Something went wrong', e))
 
+const getUsersController = require('./controllers/getUsers')
 const getUserController = require('./controllers/getUser')
 const getUserIdController = require('./controllers/getUserId')
 const submitUserController = require('./controllers/submitUser')
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     res.render('layouts/base.html')
 })
 
-app.get('/users', getUserController)
+app.get('/users', getUsersController)
 app.get('/users/id', getUserIdController)
 app.post('/users/submit', submitUserController)
 app.get('/users/:userId/stats', getUserController)

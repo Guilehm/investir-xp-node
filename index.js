@@ -38,6 +38,7 @@ app.get('/api/users/id/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserApiController)
 
 app.get('/users/:epicName/', userDetailController)
+
 app.post('/users/submit/', submitUserController)
 
 app.listen(4000, () => {

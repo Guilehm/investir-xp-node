@@ -3,7 +3,6 @@ const User = require('../database/models/User')
 module.exports = (req, res) => {
     let epicName = req.params.epicName
 
-
     let handleError = error => {
         res.render('layouts/user-detail.html', {
             error: true,
@@ -23,5 +22,5 @@ module.exports = (req, res) => {
         }
         handleSuccess(user)
     });
-    
+
 }

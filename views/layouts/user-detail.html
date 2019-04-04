@@ -4,13 +4,13 @@
 
 <div class="jumbotron">
     <div class="container">
-        {% if not error %}
+        {% if error %}
+            <p>Usuário não encontrado</p>
+        {% else %}
             <h1 class="display-4">{{ user.epicName }}</h1>
             <hr class="my-4">
             <p>{{ user.seasonWindow }}</p>
             <p class="lead">{{ user.dateAdded }}</p>
-        {% else %}
-            <p>Usuário não encontrado</p>
         {% endif %}
     </div>
 </div>

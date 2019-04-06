@@ -8,7 +8,7 @@ VIEWS_DIR = './views/'
 
 const app = new express()
 
-const mongoConfig = require('./config/mongo')[env]
+const mongoConfig = require('./config/mongo')
 const env = process.env.NODE_ENV || 'development'
 const envUrl = process.env[config.use_env_variable]
 const DevUrl = `mongodb://${mongoConfig.host}/${mongoConfig.database}`

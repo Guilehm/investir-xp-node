@@ -31,6 +31,7 @@ const getUserStatsApiController = require('./controllers/api/getUserStatsApi')
 const createUserStatsApiController = require('./controllers/api/createUserStatsApi')
 
 const getUserStatsController = require('./controllers/web/getUserStats')
+const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
 
 
 app.get('/', (req, res) => {
@@ -43,6 +44,7 @@ app.get('/api/users/:userId/stats/', getUserStatsApiController)
 app.post('/api/users/:userId/', createUserStatsApiController)
 
 app.get('/users/:username/stats/', getUserStatsController)
+app.post('/users/stats/submit/', getUserStatsSubmitController)
 
 app.listen(4000, () => {
     console.log('App listening on port 4000...')

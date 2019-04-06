@@ -2,8 +2,6 @@ const https = require('../../services/https')
 
 module.exports = async (req, res) => {
 
-    res.setHeader('Content-Type', 'application/json')
-
     let userId = req.params.userId
 
     let handleSuccess = data => {

@@ -3,8 +3,6 @@ const UserData = require('../../database/models/UserData')
 
 module.exports = async (req, res) => {
 
-    res.setHeader('Content-Type', 'application/json')
-
     let username = req.params.username
 
     let handleSuccess = data => {

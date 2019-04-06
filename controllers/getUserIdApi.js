@@ -11,10 +11,6 @@ module.exports = (req, res) => {
         })
     }
 
-    let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/id?username=${username}`
-
-    https(endpoint).then(handleSuccess, handleFailure)
-
     let handleSuccess = data => {
         res.end(JSON.stringify({
             data
@@ -26,5 +22,8 @@ module.exports = (req, res) => {
             error: error,
         }))
     }
+
+    let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/id?username=${username}`
+    https(endpoint).then(handleSuccess, handleFailure)
 
 }

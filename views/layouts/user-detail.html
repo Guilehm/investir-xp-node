@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+{% block hero %}
+<!-- Page top section -->
+<section class="page-top-section set-bg" data-setbg="/img/page-top-bg/5.jpg">
+    <div class="page-info">
+        <h2>{{ user.username or 'Usuário não encontrado' }}</h2>
+        <div class="site-breadcrumb">
+            {% for platform in user.platforms %}
+                <a href="">{{ platform }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Page top end-->
+{% endblock %}
+
+{% block content %}
+{% endblock %}

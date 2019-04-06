@@ -11,7 +11,8 @@ module.exports = (req, res) => {
 
     let handleSuccess = data => {
         User.create(data, (error, user) => {
-            res.end(JSON.stringify({
+            if (error) res.end(JSON.stringify({ error }))
+            res.status(201).end(JSON.stringify({
                 user
             }))
         })

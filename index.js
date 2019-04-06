@@ -52,6 +52,8 @@ app.post('/api/users/:userId/', createUserStatsApiController)
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
 
-app.listen(4000, () => {
+
+let port = process.env.PORT || 000
+app.listen(port, () => {
     console.log('App listening on port 4000...')
 })

@@ -8,7 +8,13 @@ VIEWS_DIR = './views/'
 
 const app = new express()
 
-mongoose.connect('mongodb://localhost:27017/xp', { useNewUrlParser: true })
+const mongoConfig = require('./config/mongo')[env]
+const env = process.env.NODE_ENV || 'development'
+const envUrl = process.env[config.use_env_variable]
+const DevUrl = `mongodb://${mongoConfig.host}/${mongoConfig.database}`
+const mongoUrl = envUrl ? envUrl : DevUrl
+
+mongoose.connect(mongoUrl, { useNewUrlParser: true })
     .then(() => console.log('Connected to Mongo'))
     .catch(e => console.log('Something went wrong', e))
 

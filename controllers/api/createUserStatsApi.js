@@ -1,5 +1,5 @@
-const User = require('../database/models/User')
-const https = require('../services/https')
+const User = require('../../database/models/User')
+const https = require('../../services/https')
 
 module.exports = async (req, res) => {
 

@@ -1,12 +1,14 @@
-const https = require('../services/https')
+const https = require('../../services/https')
+const UserData = require('../../database/models/UserData')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
 
     res.setHeader('Content-Type', 'application/json')
 
     let username = req.params.username
 
     let handleSuccess = data => {
+        UserData.create(data)
         res.end(JSON.stringify({
             data
         }))
@@ -20,6 +22,6 @@ module.exports = (req, res) => {
 
     let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/id?username=${username}`
     
-    https(endpoint).then(handleSuccess, handleFailure)
+    await https(endpoint).then(handleSuccess, handleFailure)
 
 }

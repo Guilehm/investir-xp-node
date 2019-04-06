@@ -26,9 +26,12 @@ let nunjucksOptions = {
 nunjucks.configure(VIEWS_DIR, nunjucksOptions)
 
 
-const getUserIdApiController = require('./controllers/getUserIdApi')
-const getUserStatsApiController = require('./controllers/getUserStatsApi')
-const createUserStatsApiController = require('./controllers/createUserStatsApi')
+const getUserIdApiController = require('./controllers/api/getUserIdApi')
+const getUserStatsApiController = require('./controllers/api/getUserStatsApi')
+const createUserStatsApiController = require('./controllers/api/createUserStatsApi')
+
+const getUserStatsController = require('./controllers/web/getUserStats')
+
 
 app.get('/', (req, res) => {
     res.render('layouts/index.html')
@@ -38,6 +41,8 @@ app.get('/api/users/:username/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserStatsApiController)
 
 app.post('/api/users/:userId/', createUserStatsApiController)
+
+app.get('/users/:username/stats/', getUserStatsController)
 
 app.listen(4000, () => {
     console.log('App listening on port 4000...')

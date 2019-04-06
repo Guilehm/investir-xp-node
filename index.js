@@ -24,12 +24,14 @@ nunjucks.configure(VIEWS_DIR, nunjucksOptions)
 
 
 const getUserIdApiController = require('./controllers/getUserIdApi')
+const getUserStatsApiController = require('./controllers/getUserStatsApi')
 
 app.get('/', (req, res) => {
     res.render('layouts/index.html')
 })
 
 app.get('/api/users/:username/', getUserIdApiController)
+app.get('/api/users/:userId/stats/', getUserStatsApiController)
 
 app.listen(4000, () => {
     console.log('App listening on port 4000...')

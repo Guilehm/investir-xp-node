@@ -1,10 +1,10 @@
 const https = require('../services/https')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
 
     res.setHeader('Content-Type', 'application/json')
 
-    let username = req.params.username
+    let userId = req.params.userId
 
     let handleSuccess = data => {
         res.end(JSON.stringify({
@@ -18,8 +18,8 @@ module.exports = (req, res) => {
         }))
     }
 
-    let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/id?username=${username}`
-    
-    https(endpoint).then(handleSuccess, handleFailure)
+    let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/public/br_stats_v2?user_id=${userId}`
+
+    await https(endpoint).then(handleSuccess, handleFailure)
 
 }

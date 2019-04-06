@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
+    username: String,
     accountId: String,
     fnApiId: Number,
     epicName: String,

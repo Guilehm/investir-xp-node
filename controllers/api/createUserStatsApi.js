@@ -7,6 +7,8 @@ module.exports = async (req, res) => {
 
     let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/public/br_stats_v2?user_id=${userId}`
 
+    res.setHeader('Content-Type', 'application/json')
+
     let handleSuccess = async data => {
         await User.create(data, (error, user) => {
             if (error) res.end(JSON.stringify({ error }))

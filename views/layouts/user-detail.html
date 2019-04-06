@@ -3,9 +3,9 @@
 <!-- Page top section -->
 <section class="page-top-section set-bg" data-setbg="/img/page-top-bg/5.jpg">
     <div class="page-info">
-        <h2>{{ user.username or 'Usuário não encontrado' }}</h2>
+        <h2>{{ userStats.epicName or 'Usuário não encontrado' }}</h2>
         <div class="site-breadcrumb">
-            {% for platform in user.platforms %}
+            {% for platform in userData.platforms %}
                 <a href="">{{ platform }}</a>
             {% endfor %}
         </div>
@@ -15,4 +15,55 @@
 {% endblock %}
 
 {% block content %}
+{% if userStats %}
+    <section class="intro-section">
+        <div class="container">
+            {% for key, value in userStats.data %}
+                <h2 class="display-4 text-white mb-5 ">{{ key }}</h2>
+                <div class="row">
+                    {% for k, v in value %}
+                        {% if k == 'defaultsolo' %}
+                        <div class="col-md-4 mb-3">
+                            <div class="intro-text-box text-box text-white">
+                                <h3 class="mb-3">Solo</h3>
+                                <p class="mb-2">
+                                    partidas: {{ v.default.matchesplayed }} <br>
+                                </p>
+                                <div class="top-meta m-0"><a>Vitórias:</a> {{ v.default.placetop1 or '0' }}</div>
+                                <div class="top-meta m-0"><a>Kills:</a> {{ v.default.kills or '0' }}</div>
+                                <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if k == 'defaultduo' %}
+                        <div class="col-md-4 mb-3">
+                            <div class="intro-text-box text-box text-white">
+                                <h3 class="mb-3">Duo</h3>
+                                <p class="mb-2">
+                                    partidas: {{ v.default.matchesplayed }} <br>
+                                </p>
+                                <div class="top-meta m-0"><a>Vitórias:</a> {{ v.default.placetop1 or '0' }}</div>
+                                <div class="top-meta m-0"><a>Kills:</a> {{ v.default.kills or '0' }}</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if k == 'defaultsquad' %}
+                        <div class="col-md-4 mb-3">
+                            <div class="intro-text-box text-box text-white">
+                                <h3 class="mb-3">Squad</h3>
+                                <p class="mb-2">
+                                    partidas: {{ v.default.matchesplayed }} <br>
+                                </p>
+                                <div class="top-meta m-0"><a>Vitórias:</a> {{ v.default.placetop1 or '0' }}</div>
+                                <div class="top-meta m-0"><a>Kills:</a> {{ v.default.kills or '0' }}</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <hr class="text-white bg-white">
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}
 {% endblock %}

@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     res.render('layouts/index.html')
 })
 
-app.get('/api/:username/', getUserIdApiController)
+app.get('/api/users/:username/', getUserIdApiController)
 
 app.listen(4000, () => {
     console.log('App listening on port 4000...')

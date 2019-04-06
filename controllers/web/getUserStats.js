@@ -25,8 +25,6 @@ module.exports = (req, res) => {
         let userStats = await getUserStats(uid)
             .then(handleRequestSuccess, handleError)
 
-        console.log(userStats)
-
         res.render('layouts/user-detail', {
             userStats: userStats,
             userData: data,

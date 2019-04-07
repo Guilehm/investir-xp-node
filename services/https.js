@@ -16,16 +16,11 @@ function getUrlData(url) {
                     reject(e)
                 }})}
 
-        let request = https
+        https
             .get(url, dealWithResponse)
             .on('error', (e) => {
                 reject(e)
             })
-
-        request.setTimeout(CONNECTION_TIMEOUT, () => {
-            request.abort()
-        })
-        request.end()
     })
 }
 

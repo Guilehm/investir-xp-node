@@ -6,7 +6,7 @@
         <h2>{{ userStats.epicName or 'Usuário não encontrado' }}</h2>
         <div class="site-breadcrumb">
             {% for platform in userData.platforms %}
-                <a href="">{{ platform }}</a>
+                <a>{{ platform }}</a>
             {% endfor %}
         </div>
     </div>
@@ -15,126 +15,165 @@
 {% endblock %}
 
 {% block content %}
-
-{% if userStats %}
 <section class="intro-section">
     {% if userStats.data.keyboardmouse %}
-        <div class="container">
-            <h2 class="display-4 text-white mb-5 ">keyboardmouse</h2>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Solo</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.keyboardmouse.defaultsolo.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.keyboardmouse.defaultsolo.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.keyboardmouse.defaultsolo.default.kills or '0' }}</div>
-                        <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Duo</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.keyboardmouse.defaultduo.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.keyboardmouse.defaultduo.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.keyboardmouse.defaultduo.default.kills or '0' }}</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Squad</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.keyboardmouse.defaultsquad.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.keyboardmouse.defaultsquad.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.keyboardmouse.defaultsquad.default.kills or '0' }}</div>
+    <div class="container">
+        <h2 class="display-4 text-white mb-5 ">mouse + teclado</h2>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Solo</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.data.keyboardmouse.defaultsolo.default.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.data.keyboardmouse.defaultsolo.default.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.data.keyboardmouse.defaultsolo.default.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.data.keyboardmouse.defaultsolo.default.kills / userStats.data.keyboardmouse.defaultsolo.default.matchesplayed) | round(2) }}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr class="text-white bg-white">
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Duo</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.data.keyboardmouse.defaultduo.default.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.data.keyboardmouse.defaultduo.default.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.data.keyboardmouse.defaultduo.default.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.data.keyboardmouse.defaultduo.default.kills / userStats.data.keyboardmouse.defaultduo.default.matchesplayed) | round(2) }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Squad</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.data.keyboardmouse.defaultsquad.default.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.data.keyboardmouse.defaultsquad.default.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.data.keyboardmouse.defaultsquad.default.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.data.keyboardmouse.defaultsquad.default.kills / userStats.data.keyboardmouse.defaultsquad.default.matchesplayed) | round(2) }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     {% endif %}
     {% if userStats.data.gamepad %}
-        <div class="container">
-            <h2 class="display-4 text-white mb-5 ">gamepad</h2>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Solo</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.gamepad.defaultsolo.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.gamepad.defaultsolo.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.gamepad.defaultsolo.default.kills or '0' }}</div>
-                        <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Duo</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.gamepad.defaultduo.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.gamepad.defaultduo.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.gamepad.defaultduo.default.kills or '0' }}</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Squad</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.gamepad.defaultsquad.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.gamepad.defaultsquad.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.gamepad.defaultsquad.default.kills or '0' }}</div>
+    <div class="container">
+        <h2 class="display-4 text-white mb-5 ">controle</h2>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Solo</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.data.gamepad.defaultsolo.default.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.data.gamepad.defaultsolo.default.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.data.gamepad.defaultsolo.default.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.data.gamepad.defaultsolo.default.kills / userStats.data.gamepad.defaultsolo.default.matchesplayed) | round(2) }}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr class="text-white bg-white">
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Duo</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.data.gamepad.defaultduo.default.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.data.gamepad.defaultduo.default.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.data.gamepad.defaultduo.default.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.data.gamepad.defaultduo.default.kills / userStats.data.gamepad.defaultduo.default.matchesplayed) | round(2) }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Squad</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.data.gamepad.defaultsquad.default.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.data.gamepad.defaultsquad.default.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.data.gamepad.defaultsquad.default.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.data.gamepad.defaultsquad.default.kills / userStats.data.gamepad.defaultsquad.default.matchesplayed) | round(2) }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     {% endif %}
-    {% if userStats.data.touch %}
-        <div class="container">
-            <h2 class="display-4 text-white mb-5 ">touch</h2>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Solo</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.touch.defaultsolo.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.touch.defaultsolo.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.touch.defaultsolo.default.kills or '0' }}</div>
-                        <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Duo</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.touch.defaultduo.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.touch.defaultduo.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.touch.defaultduo.default.kills or '0' }}</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="intro-text-box text-box text-white">
-                        <h3 class="mb-3">Squad</h3>
-                        <p class="mb-2">
-                            partidas: {{ userStats.data.touch.defaultsquad.default.matchesplayed }} <br>
-                        </p>
-                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.touch.defaultsquad.default.placetop1 or '0' }}</div>
-                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.touch.defaultsquad.default.kills or '0' }}</div>
+    {% if userStats.overallData %}
+    <div class="container">
+        <h2 class="display-4 text-white mb-5 ">geral</h2>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Padrão</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.overallData.defaultModes.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.overallData.defaultModes.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.overallData.defaultModes.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.overallData.defaultModes.kills / userStats.overallData.defaultModes.matchesplayed) | round(2) }}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr class="text-white bg-white">
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">LTM</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.overallData.ltmModes.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.overallData.ltmModes.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.overallData.ltmModes.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.overallData.ltmModes.kills / userStats.overallData.ltmModes.matchesplayed) | round(2) }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="widget-item mb-4">
+                    <div class="rating-widget">
+                        <h4 class="widget-title">Grandes Times</h4>
+                        <ul>
+                            <li>Partidas<span>{{ userStats.overallData.largeTeamModes.matchesplayed }}</span></li>
+                            <li>Vitórias<span>{{ userStats.overallData.largeTeamModes.placetop1 or '0' }}</span></li>
+                            <li>Kills<span>{{ userStats.overallData.largeTeamModes.kills or '0' }}</span></li>
+                        </ul>
+                        <div class="rating">
+                            <h5><i>KD</i>{{ (userStats.overallData.largeTeamModes.kills / userStats.overallData.largeTeamModes.matchesplayed) | round(2) }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
         </div>
+    </div>
     {% endif %}
 </section>
-{% endif %}
 {% endblock %}

@@ -15,55 +15,126 @@
 {% endblock %}
 
 {% block content %}
+
 {% if userStats %}
-    <section class="intro-section">
+<section class="intro-section">
+    {% if userStats.data.keyboardmouse %}
         <div class="container">
-            {% for key, value in userStats.data %}
-                <h2 class="display-4 text-white mb-5 ">{{ key }}</h2>
-                <div class="row">
-                    {% for k, v in value %}
-                        {% if k == 'defaultsolo' %}
-                        <div class="col-md-4 mb-3">
-                            <div class="intro-text-box text-box text-white">
-                                <h3 class="mb-3">Solo</h3>
-                                <p class="mb-2">
-                                    partidas: {{ v.default.matchesplayed }} <br>
-                                </p>
-                                <div class="top-meta m-0"><a>Vitórias:</a> {{ v.default.placetop1 or '0' }}</div>
-                                <div class="top-meta m-0"><a>Kills:</a> {{ v.default.kills or '0' }}</div>
-                                <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if k == 'defaultduo' %}
-                        <div class="col-md-4 mb-3">
-                            <div class="intro-text-box text-box text-white">
-                                <h3 class="mb-3">Duo</h3>
-                                <p class="mb-2">
-                                    partidas: {{ v.default.matchesplayed }} <br>
-                                </p>
-                                <div class="top-meta m-0"><a>Vitórias:</a> {{ v.default.placetop1 or '0' }}</div>
-                                <div class="top-meta m-0"><a>Kills:</a> {{ v.default.kills or '0' }}</div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if k == 'defaultsquad' %}
-                        <div class="col-md-4 mb-3">
-                            <div class="intro-text-box text-box text-white">
-                                <h3 class="mb-3">Squad</h3>
-                                <p class="mb-2">
-                                    partidas: {{ v.default.matchesplayed }} <br>
-                                </p>
-                                <div class="top-meta m-0"><a>Vitórias:</a> {{ v.default.placetop1 or '0' }}</div>
-                                <div class="top-meta m-0"><a>Kills:</a> {{ v.default.kills or '0' }}</div>
-                            </div>
-                        </div>
-                        {% endif %}
-                    {% endfor %}
+            <h2 class="display-4 text-white mb-5 ">keyboardmouse</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Solo</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.keyboardmouse.defaultsolo.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.keyboardmouse.defaultsolo.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.keyboardmouse.defaultsolo.default.kills or '0' }}</div>
+                        <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
+                    </div>
                 </div>
-                <hr class="text-white bg-white">
-            {% endfor %}
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Duo</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.keyboardmouse.defaultduo.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.keyboardmouse.defaultduo.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.keyboardmouse.defaultduo.default.kills or '0' }}</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Squad</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.keyboardmouse.defaultsquad.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.keyboardmouse.defaultsquad.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.keyboardmouse.defaultsquad.default.kills or '0' }}</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-white bg-white">
         </div>
-    </section>
+    {% endif %}
+    {% if userStats.data.gamepad %}
+        <div class="container">
+            <h2 class="display-4 text-white mb-5 ">gamepad</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Solo</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.gamepad.defaultsolo.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.gamepad.defaultsolo.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.gamepad.defaultsolo.default.kills or '0' }}</div>
+                        <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Duo</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.gamepad.defaultduo.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.gamepad.defaultduo.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.gamepad.defaultduo.default.kills or '0' }}</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Squad</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.gamepad.defaultsquad.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.gamepad.defaultsquad.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.gamepad.defaultsquad.default.kills or '0' }}</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-white bg-white">
+        </div>
+    {% endif %}
+    {% if userStats.data.touch %}
+        <div class="container">
+            <h2 class="display-4 text-white mb-5 ">touch</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Solo</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.touch.defaultsolo.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.touch.defaultsolo.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.touch.defaultsolo.default.kills or '0' }}</div>
+                        <!-- <a href="#" class="read-more">Read More  <img src="/img/icons/double-arrow.png" alt="#"/></a> -->
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Duo</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.touch.defaultduo.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.touch.defaultduo.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.touch.defaultduo.default.kills or '0' }}</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="intro-text-box text-box text-white">
+                        <h3 class="mb-3">Squad</h3>
+                        <p class="mb-2">
+                            partidas: {{ userStats.data.touch.defaultsquad.default.matchesplayed }} <br>
+                        </p>
+                        <div class="top-meta m-0"><a>Vitórias:</a> {{ userStats.data.touch.defaultsquad.default.placetop1 or '0' }}</div>
+                        <div class="top-meta m-0"><a>Kills:</a> {{ userStats.data.touch.defaultsquad.default.kills or '0' }}</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-white bg-white">
+        </div>
+    {% endif %}
+</section>
 {% endif %}
 {% endblock %}

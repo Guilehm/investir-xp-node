@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="pt-BR">
 <head>
 	<title>Investir != XP</title>
 	<meta charset="UTF-8">
@@ -19,6 +19,8 @@
 	<link rel="stylesheet" href="/css/animate.css"/>
 
 	<link rel="stylesheet" href="/css/style.css"/>
+	{% block header_imports %}
+	{% endblock %}
 
 
 	<!--[if lt IE 9]>
@@ -43,7 +45,7 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="#">Estatísticas</a>
 							<ul class="sub-menu">
-								<li><a href="">Gráficos</a></li>
+								<li><a href="/charts/">Gráficos</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -86,6 +88,9 @@
 	<script src="/js/jquery.sticky-sidebar.min.js"></script>
 	<script src="/js/jquery.magnific-popup.min.js"></script>
 	<script src="/js/main.js"></script>
+
+	{% block js %}
+	{% endblock %}
 
 	</body>
 </html>

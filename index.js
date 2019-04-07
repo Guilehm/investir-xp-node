@@ -6,8 +6,6 @@ const nunjucks = require('nunjucks')
 
 VIEWS_DIR = './views/'
 
-const app = new express()
-
 const env = process.env.NODE_ENV || 'development'
 const mongoConfig = require('./config/mongo')[env]
 const envUrl = process.env[mongoConfig.use_env_variable]
@@ -18,6 +16,8 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true })
     .then(() => console.log('Connected to Mongo'))
     .catch(e => console.log('Something went wrong', e))
 
+
+const app = new express()
 app.use(express.static(path.join(__dirname, 'views/public')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -53,7 +53,7 @@ app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
 
 
-let port = process.env.PORT || 000
+let port = process.env.PORT || 4000
 app.listen(port, () => {
-    console.log('App listening on port 4000...')
+    console.log(`App listening on port ${port}...`)
 })

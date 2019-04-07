@@ -42,7 +42,7 @@ module.exports = async(req, res) => {
         return https(endpoint).then(handleUserFound, handleError)
     }
 
-    let regex = new RegExp('^' + username + '$');
+    let regex = new RegExp('^' + username + '$')
 
     UserData.findOne({
         username: {

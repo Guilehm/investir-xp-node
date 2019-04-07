@@ -39,6 +39,8 @@ const createUserStatsApiController = require('./controllers/api/createUserStatsA
 const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
 
+const getChartsController = require('./controllers/web/getChartsController')
+
 
 app.get('/', (req, res) => {
     res.render('layouts/index.html')
@@ -51,6 +53,8 @@ app.post('/api/users/:userId/', createUserStatsApiController)
 
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
+
+app.get('/charts/', getChartsController)
 
 
 let port = process.env.PORT || 4000

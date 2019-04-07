@@ -1,9 +1,12 @@
 {% extends 'layouts/base.html' %}
 {% block hero %}
-<!-- Page top section -->
 <section class="page-top-section set-bg" data-setbg="/img/page-top-bg/5.jpg">
     <div class="page-info">
-        <h2>{{ userStats.epicName or 'Usuário não encontrado' }}</h2>
+        <h2>{{ userStats.epicName or 'Usuário não encontrado' }} 
+            {% if userStats.epicName != userData.username %}
+                ({{ userData.username }})
+                {% endif %}
+        </h2>
         <div class="site-breadcrumb">
             {% for platform in userData.platforms %}
                 <a>{{ platform }}</a>
@@ -11,7 +14,6 @@
         </div>
     </div>
 </section>
-<!-- Page top end-->
 {% endblock %}
 
 {% block content %}

@@ -1,12 +1,12 @@
 const UserData = require('../../database/models/UserData')
 const https = require('../../services/https')
 
-module.exports = (req, res) => {
+module.exports = async(req, res) => {
     const username = req.params.username
 
     const getUserStats = async uid => {
         let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/public/br_stats_v2?user_id=${uid}`
-        return https(endpoint)
+        return await https(endpoint)
     }
 
     let handleError = error => {
@@ -16,7 +16,6 @@ module.exports = (req, res) => {
     }
 
     let handleSuccess = async data => {
-
         let handleRequestSuccess = stats => {
             return stats
         }
@@ -35,12 +34,12 @@ module.exports = (req, res) => {
     let handleNotFound = async () => {
         let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/id?username=${username}`
 
-        let handleSuccess = data => {
+        let handleUserFound = data => {
             UserData.create(data)
-            return data
+            return handleSuccess(data)
         }
 
-        await https(endpoint).then(handleSuccess, handleError)
+        return https(endpoint).then(handleUserFound, handleError)
     }
 
     let regex = new RegExp('^' + username + '$');

@@ -7,9 +7,7 @@ module.exports = async (req, res) => {
     let userId = req.params.userId
 
     let handleSuccess = data => {
-        res.end(JSON.stringify({
-            data
-        }))
+        res.end(JSON.stringify(data))
     }
 
     let handleFailure = error => {

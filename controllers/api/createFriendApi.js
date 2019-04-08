@@ -16,9 +16,7 @@ module.exports = async (req, res) => {
         }
 
         let data = rawData.value
-        res.end(JSON.stringify({
-            data
-        }))
+        res.end(JSON.stringify(data))
     }
 
     await Friend.findOneAndUpdate({ accountId },

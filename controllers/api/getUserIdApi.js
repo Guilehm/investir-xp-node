@@ -9,9 +9,7 @@ module.exports = async (req, res) => {
 
     let handleSuccess = data => {
         UserData.create(data)
-        res.end(JSON.stringify({
-            data
-        }))
+        res.end(JSON.stringify(data))
     }
 
     let handleFailure = error => {

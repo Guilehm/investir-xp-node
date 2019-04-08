@@ -35,6 +35,7 @@ nunjucks.configure(VIEWS_DIR, nunjucksOptions)
 const getUserIdApiController = require('./controllers/api/getUserIdApi')
 const getUserStatsApiController = require('./controllers/api/getUserStatsApi')
 const createUserStatsApiController = require('./controllers/api/createUserStatsApi')
+const createFriendApiController = require('./controllers/api/createFriendApi')
 
 const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
@@ -48,11 +49,12 @@ app.get('/', (req, res) => {
 
 app.get('/api/users/:username/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserStatsApiController)
-
 app.post('/api/users/:userId/', createUserStatsApiController)
 
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
+
+app.post('/users/friends/:accountId/add/', createFriendApiController)
 
 app.get('/charts/', getChartsController)
 

@@ -24,11 +24,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-app.set('view engine', 'html');
+app.set('view engine', 'html')
 let nunjucksOptions = {
     autoescape: true,
     express: app
-};
+}
 nunjucks.configure(VIEWS_DIR, nunjucksOptions)
 
 

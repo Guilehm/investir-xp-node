@@ -4,6 +4,7 @@ const FriendSchema = new mongoose.Schema({
     accountId: {
         type: String,
         required: true,
+        unique: true,
     },
     mainMode: {
         type: String,

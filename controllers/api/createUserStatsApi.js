@@ -12,9 +12,7 @@ module.exports = async (req, res) => {
     let handleSuccess = async data => {
         await User.create(data, (error, user) => {
             if (error) res.end(JSON.stringify({ error }))
-            res.status(201).end(JSON.stringify({
-                user
-            }))
+            res.status(201).end(JSON.stringify(user))
         })
     }
 

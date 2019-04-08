@@ -56,7 +56,7 @@ app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
 
 app.post('/users/friends/:accountId/add/', createFriendApiController)
-app.delete('/users/friends/:accountId/delete', deleteFriendApiController)
+app.delete('/users/friends/:accountId/delete/', deleteFriendApiController)
 
 app.get('/charts/', getChartsController)
 

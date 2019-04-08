@@ -10,10 +10,12 @@ module.exports = async (req, res) => {
         }))
     }
 
-    let handleSuccess = data => {
-        if (!data.lastErrorObject.updatedExisting) {
+    let handleSuccess = rawData => {
+        if (!rawData.lastErrorObject.updatedExisting) {
             res.status(201)
         }
+
+        let data = rawData.value
         res.end(JSON.stringify({
             data
         }))

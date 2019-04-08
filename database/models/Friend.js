@@ -11,6 +11,10 @@ const FriendSchema = new mongoose.Schema({
         required: true,
         enum: ['keyboardmouse', 'gamepad']
     },
+    dateAdded: {
+        type: Date,
+        default: Date.now
+    },
 })
 
 const Friend = mongoose.model('Friend', FriendSchema)

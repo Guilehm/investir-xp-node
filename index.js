@@ -36,6 +36,7 @@ const getUserIdApiController = require('./controllers/api/getUserIdApi')
 const getUserStatsApiController = require('./controllers/api/getUserStatsApi')
 const createUserStatsApiController = require('./controllers/api/createUserStatsApi')
 const createFriendApiController = require('./controllers/api/createFriendApi')
+const deleteFriendApiController = require('./controllers/api/deleteFriendApi')
 
 const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
@@ -55,6 +56,7 @@ app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
 
 app.post('/users/friends/:accountId/add/', createFriendApiController)
+app.delete('/users/friends/:accountId/delete', deleteFriendApiController)
 
 app.get('/charts/', getChartsController)
 

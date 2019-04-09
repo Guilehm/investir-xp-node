@@ -6,10 +6,10 @@ const FriendSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    mainMode: {
+    mainDevice: {
         type: String,
         required: true,
-        enum: ['keyboardmouse', 'gamepad']
+        enum: ['keyboardmouse', 'gamepad', 'touch']
     },
     dateAdded: {
         type: Date,

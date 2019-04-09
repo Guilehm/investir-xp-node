@@ -2,7 +2,7 @@ const Friend = require('../../database/models/Friend')
 
 module.exports = async (req, res) => {
     let accountId = req.params.accountId
-    let mainMode = req.body.mainMode
+    let mainDevice = req.body.mainDevice
 
     let handleError = err => {
         res.status(400).end(JSON.stringify({
@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     }
 
     await Friend.findOneAndUpdate({ accountId },
-        { accountId, mainMode }, {
+        { accountId, mainDevice }, {
             upsert: true, new: true, runValidators: true, rawResult: true
         }).then(handleSuccess, handleError)
 }

@@ -1,6 +1,5 @@
 const UserData = require('../../database/models/UserData')
 const https = require('../../services/https')
-const url = require('url')
 const request = require('request')
 
 module.exports = async (req, res) => {

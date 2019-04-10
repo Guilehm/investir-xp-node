@@ -14,9 +14,9 @@ module.exports = async (req, res) => {
                 obj.chartData = friend.user[0].data[friend.mainDevice]
                 friendsData.push(obj)
             });
-            return res.render('layouts/chart-list', {
-                friendList: friendsData,
-            })
         }
+        return res.render('layouts/chart-list', {
+            friendList: friendsData,
+        })
     })
 }

@@ -11,10 +11,13 @@ const FriendSchema = new mongoose.Schema({
         required: true,
         enum: ['keyboardmouse', 'gamepad', 'touch']
     },
-    dateAdded: {
-        type: Date,
-        default: Date.now
-    },
+})
+
+FriendSchema.virtual('user', {
+    ref: 'User',
+    localField: 'accountId',
+    foreignField: 'accountId',
+    options: { sort: { dateAdded: -1 } }
 })
 
 const Friend = mongoose.model('Friend', FriendSchema)

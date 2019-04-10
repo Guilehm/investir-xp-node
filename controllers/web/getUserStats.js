@@ -1,10 +1,20 @@
 const UserData = require('../../database/models/UserData')
 const https = require('../../services/https')
+const url = require('url')
+const request = require('request')
 
-module.exports = async(req, res) => {
+module.exports = async (req, res) => {
     const username = req.params.username
 
-    const getUserStats = async uid => {
+    let postToUserStatsApi = accountId => {
+        let hostname = req.headers.host
+        let protocol = req.connection.encrypted ? 'https' : 'http'
+        let path = `${protocol}://${hostname}/api/users/${accountId}/`
+        request.post(path)
+    }
+
+    let getUserStats = async uid => {
+        postToUserStatsApi(uid)
         let endpoint = `https://fortnite-public-api.theapinetwork.com/prod09/users/public/br_stats_v2?user_id=${uid}`
         return await https(endpoint)
     }

@@ -14,7 +14,7 @@ const FriendSchema = new mongoose.Schema({
 })
 
 FriendSchema.virtual('user', {
-    ref: 'User',
+    ref: 'UserStats',
     localField: 'accountId',
     foreignField: 'accountId',
     options: { sort: { dateAdded: -1 } }

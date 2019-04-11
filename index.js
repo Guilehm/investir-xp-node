@@ -63,6 +63,7 @@ const loginController = require('./controllers/auth/loginController')
 const loginUserController = require('./controllers/auth/loginUserController')
 const createUserController = require('./controllers/auth/createUserController')
 const storeUserController = require('./controllers/auth/storeUserController')
+const logoutUserController = require('./controllers/auth/logoutUserController')
 
 
 app.get('/', (req, res) => {
@@ -84,6 +85,7 @@ app.get('/auth/login/', loginController)
 app.post('/auth/login/', loginUserController)
 app.get('/auth/register/', createUserController)
 app.post('/auth/register/', storeUserController)
+app.get('/auth/logout/', logoutUserController)
 
 
 let port = process.env.PORT || 4000

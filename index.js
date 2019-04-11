@@ -42,7 +42,8 @@ const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
 const getChartsController = require('./controllers/web/getChartsController')
 
-const createUserController = require("./controllers/auth/createUser")
+const createUserController = require("./controllers/auth/createUserController")
+const storeUserController = require("./controllers/auth/storeUserController")
 
 
 app.get('/', (req, res) => {
@@ -61,6 +62,7 @@ app.post('/users/stats/submit/', getUserStatsSubmitController)
 app.get('/charts/', getChartsController)
 
 app.get('/auth/register/', createUserController)
+app.post('/auth/register/', storeUserController)
 
 
 let port = process.env.PORT || 4000

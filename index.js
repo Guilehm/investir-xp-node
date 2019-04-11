@@ -52,11 +52,12 @@ app.get('/api/users/:username/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserStatsApiController)
 app.post('/api/users/:userId/', createUserStatsApiController)
 
+app.post('/api/users/friends/:accountId/add/', createFriendApiController)
+app.delete('/api/users/friends/:accountId/delete/', deleteFriendApiController)
+
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
 
-app.post('/users/friends/:accountId/add/', createFriendApiController)
-app.delete('/users/friends/:accountId/delete/', deleteFriendApiController)
 
 app.get('/charts/', getChartsController)
 

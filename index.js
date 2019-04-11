@@ -55,6 +55,7 @@ const createUserStatsApiController = require('./controllers/api/createUserStatsA
 const createFriendApiController = require('./controllers/api/createFriendApi')
 const deleteFriendApiController = require('./controllers/api/deleteFriendApi')
 
+const indexController = require('./controllers/web/indexController')
 const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
 const getChartsController = require('./controllers/web/getChartsController')
@@ -66,9 +67,7 @@ const storeUserController = require('./controllers/auth/storeUserController')
 const logoutUserController = require('./controllers/auth/logoutUserController')
 
 
-app.get('/', (req, res) => {
-    res.render('layouts/index.html')
-})
+app.get('/', indexController)
 
 app.get('/api/users/:username/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserStatsApiController)

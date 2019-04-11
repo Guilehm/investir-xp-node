@@ -20,7 +20,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true })
     .then(() => console.log('Connected to Mongo'))
     .catch(e => console.log('Something went wrong', e))
 
-const mongoStore = connectMongo(expressSession);
+const mongoStore = connectMongo(expressSession)
 app.use(expressSession({
     secret: 'secret',
     resave: true,
@@ -31,7 +31,7 @@ app.use(expressSession({
 }))
 
 
-app.use(express.static(path.join(__dirname, 'views/public')));
+app.use(express.static(path.join(__dirname, 'views/public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
@@ -42,8 +42,12 @@ let nunjucksOptions = {
     autoescape: true,
     express: app
 }
-nunjucks.configure(VIEWS_DIR, nunjucksOptions)
+let envNunjucks = nunjucks.configure(VIEWS_DIR, nunjucksOptions)
 
+app.use('*', (req, res, next) => {
+    envNunjucks.addGlobal('isAuthenticated', req.session.userId)
+    next()
+})
 
 const getUserIdApiController = require('./controllers/api/getUserIdApi')
 const getUserStatsApiController = require('./controllers/api/getUserStatsApi')
@@ -55,8 +59,10 @@ const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
 const getChartsController = require('./controllers/web/getChartsController')
 
-const createUserController = require("./controllers/auth/createUserController")
-const storeUserController = require("./controllers/auth/storeUserController")
+const loginController = require('./controllers/auth/loginController')
+const loginUserController = require('./controllers/auth/loginUserController')
+const createUserController = require('./controllers/auth/createUserController')
+const storeUserController = require('./controllers/auth/storeUserController')
 
 
 app.get('/', (req, res) => {
@@ -74,6 +80,8 @@ app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
 app.get('/charts/', getChartsController)
 
+app.get('/auth/login/', loginController)
+app.post('/auth/login/', loginUserController)
 app.get('/auth/register/', createUserController)
 app.post('/auth/register/', storeUserController)
 

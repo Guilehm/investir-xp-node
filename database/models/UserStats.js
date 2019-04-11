@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const UserSchema = new mongoose.Schema({
+const UserStatsSchema = new mongoose.Schema({
     username: String,
     accountId: String,
     fnApiId: Number,
@@ -15,6 +15,6 @@ const UserSchema = new mongoose.Schema({
     },
 })
 
-const User = mongoose.model('User', UserSchema)
+const UserStats = mongoose.model('UserStats', UserStatsSchema)
 
-module.exports = User
+module.exports = UserStats

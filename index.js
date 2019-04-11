@@ -3,6 +3,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const nunjucks = require('nunjucks')
+const connectMongo = require('connect-mongo')
+const expressSession = require('express-session')
 
 VIEWS_DIR = './views/'
 
@@ -12,12 +14,23 @@ const envUrl = process.env[mongoConfig.use_env_variable]
 const DevUrl = `mongodb://${mongoConfig.host}/${mongoConfig.database}`
 const mongoUrl = envUrl ? envUrl : DevUrl
 
+const app = new express()
+
 mongoose.connect(mongoUrl, { useNewUrlParser: true })
     .then(() => console.log('Connected to Mongo'))
     .catch(e => console.log('Something went wrong', e))
 
+const mongoStore = connectMongo(expressSession);
+app.use(expressSession({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+    store: new mongoStore({
+        mongooseConnection: mongoose.connection
+    })
+}))
 
-const app = new express()
+
 app.use(express.static(path.join(__dirname, 'views/public')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({

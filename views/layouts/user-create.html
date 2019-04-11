@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+{% block hero %}
+<section class="page-top-section set-bg" data-setbg="/img/page-top-bg/6.jpg">
+    <div class="page-info">
+        <h2>Registrar</h2>
+        <div class="site-breadcrumb">
+            <a>Usuários</a> /
+            <span>Cadastrar</span>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="contact-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 order-2 order-lg-1">
+                {% if databaseError %}<span class="text-danger">Já existe um cadastro com este usuário</span>{% endif %}
+                <form class="contact-form" method="POST" action="/auth/register/">
+                    {% if usernameError %}<span class="text-danger">Usuário inválido</span>{% endif %}
+                    <input name="username" type="text" placeholder="Usuário">
+                    {% if passwordError %}<span class="text-danger">Senha inválida</span>{% endif %}
+                    <input name="password" type="password" placeholder="senha">
+                    <button class="site-btn" type="submit">Salvar<img src="/img/icons/double-arrow.png"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     }
 
     let handleError = error => {
-        res.render('layouts/user-detail', {
+        res.render('layouts/user-stats-detail', {
             error
         })
     }
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
         let userStats = await getUserStats(uid)
             .then(handleRequestSuccess, handleError)
 
-        res.render('layouts/user-detail', {
+        res.render('layouts/user-stats-detail', {
             userStats: userStats,
             userData: data,
         })

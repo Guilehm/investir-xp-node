@@ -38,9 +38,16 @@
 		<div class="header-warp">
 			<div class="header-bar-warp d-flex">
 				<a href="/" class="site-logo">
-						<img src="/img/logo.png" alt="" style="max-width: 50px">
-					</a>
-				<nav class="top-nav-area">
+					<img src="/img/logo.png" alt="" style="max-width: 50px">
+				</a>
+				<nav class="top-nav-area w-100">
+					<div class="user-panel">
+						{% if not isAuthenticated %}
+							<a href="/auth/login/">Login</a> / <a href="/auth/register/">Cadastrar</a>
+						{% else %}
+						<a href="/auth/logout/">Logout</a>
+						{% endif %}
+					</div>
 					<ul class="main-menu primary-menu">
 						<li><a href="/">Home</a></li>
 						<li><a href="#">Estatísticas</a>
@@ -53,7 +60,6 @@
 			</div>
 		</div>
 	</header>
-
 	{% block hero %}
 	<section class="hero-section overflow-hidden">
 		<div class="hero-slider owl-carousel">

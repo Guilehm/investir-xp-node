@@ -40,8 +40,9 @@ const deleteFriendApiController = require('./controllers/api/deleteFriendApi')
 
 const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
-
 const getChartsController = require('./controllers/web/getChartsController')
+
+const createUserController = require("./controllers/auth/createUser")
 
 
 app.get('/', (req, res) => {
@@ -57,9 +58,9 @@ app.delete('/api/users/friends/:accountId/delete/', deleteFriendApiController)
 
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
-
-
 app.get('/charts/', getChartsController)
+
+app.get('/auth/register/', createUserController)
 
 
 let port = process.env.PORT || 4000

@@ -1,4 +1,4 @@
-const User = require('../../database/models/User')
+const UserStats = require('../../database/models/UserStats')
 const https = require('../../services/https')
 
 module.exports = async (req, res) => {
@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     res.setHeader('Content-Type', 'application/json')
 
     let handleSuccess = async data => {
-        await User.create(data, (error, user) => {
+        await UserStats.create(data, (error, user) => {
             if (error) res.end(JSON.stringify({ error }))
             res.status(201).end(JSON.stringify(user))
         })

@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const nunjucks = require('nunjucks')
 const connectMongo = require('connect-mongo')
 const expressSession = require('express-session')
+const cache = require('./services/cache')
 
 VIEWS_DIR = './views/'
 
@@ -67,7 +68,7 @@ const storeUserController = require('./controllers/auth/storeUserController')
 const logoutUserController = require('./controllers/auth/logoutUserController')
 
 
-app.get('/', indexController)
+app.get('/', cache(10 * 60), indexController)
 
 app.get('/api/users/:username/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserStatsApiController)
@@ -78,7 +79,7 @@ app.delete('/api/users/friends/:accountId/delete/', deleteFriendApiController)
 
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
-app.get('/charts/', getChartsController)
+app.get('/charts/', cache(3 * 60), getChartsController)
 
 app.get('/auth/login/', loginController)
 app.post('/auth/login/', loginUserController)

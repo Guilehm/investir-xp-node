@@ -1,4 +1,4 @@
-var path = require('path')
+const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
@@ -6,6 +6,7 @@ const nunjucks = require('nunjucks')
 const connectMongo = require('connect-mongo')
 const expressSession = require('express-session')
 const cache = require('./services/cache')
+const morgan = require('morgan')
 
 VIEWS_DIR = './views/'
 
@@ -37,6 +38,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+
+app.use(morgan('short'))
 
 app.set('view engine', 'html')
 let nunjucksOptions = {

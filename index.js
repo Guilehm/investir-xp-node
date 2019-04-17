@@ -7,6 +7,7 @@ const connectMongo = require('connect-mongo')
 const expressSession = require('express-session')
 const cache = require('./services/cache')
 const morgan = require('morgan')
+const helmet = require('helmet')
 
 VIEWS_DIR = './views/'
 
@@ -40,6 +41,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(morgan('short'))
+app.use(helmet())
 
 app.set('view engine', 'html')
 let nunjucksOptions = {

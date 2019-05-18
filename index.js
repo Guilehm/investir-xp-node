@@ -74,7 +74,7 @@ const storeUserController = require('./controllers/auth/storeUserController')
 const logoutUserController = require('./controllers/auth/logoutUserController')
 
 
-app.get('/', cache(10 * 60), indexController)
+app.get('/', cache(DEBUG ? 0 : 10 * 60), indexController)
 
 app.get('/api/users/:username/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserStatsApiController)
@@ -85,7 +85,7 @@ app.delete('/api/users/friends/:accountId/delete/', deleteFriendApiController)
 
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
-app.get('/charts/', cache(3 * 60), getChartsController)
+app.get('/charts/', cache(DEBUG ? 0 : 3 * 60), getChartsController)
 
 app.get('/auth/login/', loginController)
 app.post('/auth/login/', loginUserController)

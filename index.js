@@ -96,5 +96,6 @@ app.get('/auth/logout/', logoutUserController)
 
 let port = process.env.PORT || 4000
 app.listen(port, () => {
-    console.log(`App listening on port ${port}...`)
+    let message = DEBUG ? 'Starting development server on port' : 'App listening on port'
+    console.log(message, `${port}...`)
 })

@@ -10,6 +10,7 @@ const morgan = require('morgan')
 const helmet = require('helmet')
 
 VIEWS_DIR = './views/'
+const DEBUG = process.env.DEBUG
 
 const env = process.env.NODE_ENV || 'development'
 const mongoConfig = require('./config/mongo')[env]

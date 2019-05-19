@@ -8,11 +8,15 @@ module.exports = async (req, res) => {
         friendsData = []
         if (!error) {
             let obj
+            let user
             friends.forEach((friend) => {
-                obj = {}
-                obj.epicName = friend.user[0].epicName
-                obj.chartData = friend.user[0].data[friend.mainDevice]
-                friendsData.push(obj)
+                user = friend.user[0]
+                if (user) {
+                    obj = {}
+                    obj.epicName = friend.user[0].epicName
+                    obj.chartData = friend.user[0].data[friend.mainDevice]
+                    friendsData.push(obj)
+                }
             });
         }
         return res.render('layouts/chart-list', {

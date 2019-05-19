@@ -13,8 +13,8 @@ module.exports = async (req, res) => {
                 user = friend.user[0]
                 if (user) {
                     obj = {}
-                    obj.epicName = friend.user[0].epicName
-                    obj.chartData = friend.user[0].data[friend.mainDevice]
+                    obj.epicName = user.epicName
+                    obj.chartData = user.data[friend.mainDevice]
                     friendsData.push(obj)
                 }
             });

@@ -10,6 +10,7 @@ const morgan = require('morgan')
 const helmet = require('helmet')
 
 VIEWS_DIR = './views/'
+const DEBUG = process.env.DEBUG
 
 const env = process.env.NODE_ENV || 'development'
 const mongoConfig = require('./config/mongo')[env]
@@ -73,7 +74,7 @@ const storeUserController = require('./controllers/auth/storeUserController')
 const logoutUserController = require('./controllers/auth/logoutUserController')
 
 
-app.get('/', cache(10 * 60), indexController)
+app.get('/', cache(DEBUG ? 0 : 10 * 60), indexController)
 
 app.get('/api/users/:username/', getUserIdApiController)
 app.get('/api/users/:userId/stats/', getUserStatsApiController)
@@ -84,7 +85,7 @@ app.delete('/api/users/friends/:accountId/delete/', deleteFriendApiController)
 
 app.get('/users/:username/stats/', getUserStatsController)
 app.post('/users/stats/submit/', getUserStatsSubmitController)
-app.get('/charts/', cache(3 * 60), getChartsController)
+app.get('/charts/', cache(DEBUG ? 0 : 3 * 60), getChartsController)
 
 app.get('/auth/login/', loginController)
 app.post('/auth/login/', loginUserController)
@@ -95,5 +96,6 @@ app.get('/auth/logout/', logoutUserController)
 
 let port = process.env.PORT || 4000
 app.listen(port, () => {
-    console.log(`App listening on port ${port}...`)
+    let message = DEBUG ? 'Starting development server on port' : 'App listening on port'
+    console.log(message, `${port}...`)
 })

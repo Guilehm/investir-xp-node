@@ -48,24 +48,20 @@
             <div class="col-xl-7 col-lg-8 col-md-7">
                 <div class="row">
                     {% if not error %}  
-                        {% for item in data %}
-                        {{ item }}
+                        {% for item in items %}
                             <div class="col-lg-4 col-md-6">
                                 <div class="game-item">
-                                    <img src="img/games/1.jpg" alt="#">
-                                    <h5>Zombie Appocalipse 2</h5>
-                                    <a href="game-single.html" class="read-more">Read More <img src="img/icons/double-arrow.png"
+                                    <img src="{{ item.item.images.information }}" alt="{{ item.name }}">
+                                    <h5>{{ item.name }}</h5>
+                                    <a href="/items/{{item.itemid}}/" class="read-more">Detalhes <img src="/img/icons/double-arrow.png"
                                             alt="#"></a>
                                 </div>
                             </div>
                         {% endfor %}
                     {% endif %}
-
                 </div>
                 <div class="site-pagination">
                     <a href="#" class="active">01.</a>
-                    <a href="#">02.</a>
-                    <a href="#">03.</a>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-5 sidebar game-page-sideber">
@@ -73,27 +69,13 @@
                     <div class="inner-wrapper-sticky" style="position: relative;">
                         <div class="widget-item">
                             <div class="categories-widget">
-                                <h4 class="widget-title">categories</h4>
+                                <h4 class="widget-title">categorias</h4>
                                 <ul>
-                                    <li><a href="">Games</a></li>
-                                    <li><a href="">Gaming Tips &amp; Tricks</a></li>
-                                    <li><a href="">Online Games</a></li>
-                                    <li><a href="">Team Games</a></li>
-                                    <li><a href="">Community</a></li>
-                                    <li><a href="">Uncategorized</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="widget-item">
-                            <div class="categories-widget">
-                                <h4 class="widget-title">platform</h4>
-                                <ul>
-                                    <li><a href="">Xbox</a></li>
-                                    <li><a href="">X box 360</a></li>
-                                    <li><a href="">Play Station</a></li>
-                                    <li><a href="">Play Station VR</a></li>
-                                    <li><a href="">Nintendo Wii</a></li>
-                                    <li><a href="">Nintendo Wii U</a></li>
+                                    <li><a href="">Backpack</a></li>
+                                    <li><a href="">Outfit</a></li>
+                                    <li><a href="">Glider</a></li>
+                                    <li><a href="">Music</a></li>
+                                    <li><a href="">Pickaxe</a></li>
                                 </ul>
                             </div>
                         </div>

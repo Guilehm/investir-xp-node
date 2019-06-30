@@ -11,7 +11,7 @@ module.exports = (req, res) => {
 
     let handleSuccess = data => {
         res.render('layouts/upcoming-items', {
-            data: data.items
+            items: JSON.parse(data).items,
         })
     }
 

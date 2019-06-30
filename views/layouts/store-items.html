@@ -47,18 +47,18 @@
         <div class="row">
             <div class="col-xl-7 col-lg-8 col-md-7">
                 <div class="row">
-                    {% if not error %}  
-                        {% for item in items %}
-                            <div class="col-lg-4 col-md-6">
-                                <div class="game-item">
-                                    <img src="{{ item.item.images.background }}" alt="{{ item.name }}">
-                                    <h5>{{ item.item.name }}</h5>
-                                    <p>{{ item.item.description }}</p>
-                                    <a href="#" class="read-more">Detalhes <img src="/img/icons/double-arrow.png"
-                                            alt="#"></a>
-                                </div>
-                            </div>
-                        {% endfor %}
+                    {% if not error %}
+                    {% for item in items %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="game-item">
+                            <img src="{{ item.item.images.background }}" alt="{{ item.name }}">
+                            <h5>{{ item.item.name }}</h5>
+                            <span class="read-more text-white">{{ item.store.cost }} v-bucks</span>
+                            <br>
+                            <a href="#" class="read-more">Detalhes <img src="/img/icons/double-arrow.png" alt="#"></a>
+                        </div>
+                    </div>
+                    {% endfor %}
                     {% endif %}
                 </div>
                 <div class="site-pagination">

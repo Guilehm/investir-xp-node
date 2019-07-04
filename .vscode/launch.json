@@ -20,6 +20,7 @@
             "name": "Launch Program",
             "program": "${workspaceFolder}/index.js",
             "runtimeExecutable": "/home/gui/.nvm/versions/node/v10.15.3/bin/node",
+            "envFile": "${workspaceFolder}/.env",
         }
     ]
 }

@@ -1,0 +1,83 @@
+{% extends 'layouts/base.html' %}
+
+{% block hero %}
+<section class="page-top-section set-bg" data-setbg="/img/page-top-bg/1.jpg">
+    <div class="page-info">
+        <h2>Itens</h2>
+        <div class="site-breadcrumb">
+            <a>Item</a> /
+            <span>Detalhe</span>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+{% if not error and data %}
+<section class="games-single-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8 col-md-7 game-single-content">
+                <div class="gs-meta">11.11.18 / in <a href="">Games</a></div>
+                <h2 class="gs-title">{{ data.item.name }}</h2>
+                <h4>{{ data.item.type }}</h4>
+                <p>{{ data.item.description }}</p>
+
+                <div class="game-single-preview">
+                    <img src="{{ data.item.images.information }}" alt="{{ data.item.name }}">
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-5 sidebar game-page-sideber">
+                <div id="stickySidebar" class="" style="">
+                    <div class="inner-wrapper-sticky" style="position: relative;">
+                        <div class="widget-item">
+                            <div class="rating-widget">
+                                <h4 class="widget-title">Detalhes</h4>
+                                <ul>
+                                    <li>Tipo<span>{{ data.item.type}}</span></li>
+                                    <li>Raridade<span>{{ data.item.rarity }}</span></li>
+                                    <li>Custo<span>{{ data.item.cost }}</span></li>
+                                    <li>Próximos<span>{{ data.item.upcoming }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget-item">
+                            <div class="rating-widget">
+                                <h4 class="widget-title">Classificações</h4>
+                                <ul>
+                                    <li>Pontos<span>{{ data.item.ratings.totalPoints }}</span></li>
+                                    <li>Votos<span>{{ data.item.ratings.numberVotes }}</span></li>
+                                </ul>
+                                <div class="rating">
+                                    <h5><i>Média</i><span>{{ data.item.ratings.avgStars }}</span> / 5</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-item">
+                            <div class="rating-widget">
+                                <h4 class="widget-title">Ocorrências</h4>
+                                <ul>
+                                    <li>Quantidade<span>{{ data.itemOccurrences.occurrences }}</span></li>
+                                    <li>Primeira<span>{{ data.itemOccurrences.firstOccurrences }}</span></li>
+                                    <li>Ultima<span>{{ data.itemOccurrences.lastOccurrences }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="games-single-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8 col-md-7 game-single-content">
+                <h3 class="text-white">Item não encontrado :(</h3>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

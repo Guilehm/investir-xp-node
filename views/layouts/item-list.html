@@ -1,0 +1,89 @@
+{% extends 'layouts/base.html' %}
+
+{% block hero %}
+<section class="page-top-section set-bg" data-setbg="/img/page-top-bg/1.jpg">
+    <div class="page-info">
+        <h2>Itens</h2>
+        <div class="site-breadcrumb">
+            <a>Itens</a> /
+            <span>Loja</span>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+<section class="games-section">
+    <div class="container">
+        <ul class="game-filter">
+            <li><a href="">A</a></li>
+            <li><a href="">B</a></li>
+            <li><a href="">C</a></li>
+            <li><a href="">D</a></li>
+            <li><a href="">E</a></li>
+            <li><a href="">F</a></li>
+            <li><a href="">G</a></li>
+            <li><a href="">H</a></li>
+            <li><a href="">I</a></li>
+            <li><a href="">J</a></li>
+            <li><a href="">K</a></li>
+            <li><a href="">L</a></li>
+            <li><a href="">M</a></li>
+            <li><a href="">N</a></li>
+            <li><a href="">O</a></li>
+            <li><a href="">P</a></li>
+            <li><a href="">Q</a></li>
+            <li><a href="">R</a></li>
+            <li><a href="">S</a></li>
+            <li><a href="">T</a></li>
+            <li><a href="">U</a></li>
+            <li><a href="">V</a></li>
+            <li><a href="">W</a></li>
+            <li><a href="">X</a></li>
+            <li><a href="">Y</a></li>
+            <li><a href="">Z</a></li>
+        </ul>
+        <div class="row">
+            <div class="col-xl-7 col-lg-8 col-md-7">
+                <div class="row">
+                    {% if not error %}
+                    {% for item in items %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="game-item">
+                            <img src="{{ item.item.images.background }}" alt="{{ item.name }}">
+                            <h5>{{ item.item.name }}</h5>
+                            <span class="read-more text-white">{{ item.store.cost }} v-bucks</span>
+                            <br>
+                            <a href="/items/{{ item.itemId }}" class="read-more">Detalhes <img src="/img/icons/double-arrow.png" alt="#"></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="site-pagination">
+                    <a href="#" class="active">01.</a>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-5 sidebar game-page-sideber">
+                <div id="stickySidebar">
+                    <div class="inner-wrapper-sticky" style="position: relative;">
+                        <div class="widget-item">
+                            <div class="categories-widget">
+                                <h4 class="widget-title">categorias</h4>
+                                <ul>
+                                    <li><a href="">Backpack</a></li>
+                                    <li><a href="">Outfit</a></li>
+                                    <li><a href="">Glider</a></li>
+                                    <li><a href="">Music</a></li>
+                                    <li><a href="">Pickaxe</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

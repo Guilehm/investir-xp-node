@@ -1,25 +1,66 @@
 const mongoose = require('mongoose')
 
 const ItemSchema = new mongoose.Schema({
-    itemId: String,
-    lastUpdate: Number,
-    item: {
-        name: String,
-        description: String,
-        cost: Number,
-        type: String,
-        rarity: String,
-        upcoming: Boolean,
-        costmeticId: String,
-        images: Object,
-        obtained: Date,
-        obtained_type: String,
-        ratings: Object,
-        dateAdded: {
-            type: Date,
-            default: Date.now
-        }
-    }
+	itemId: {
+		type: 'String'
+	},
+	lastUpdate: {
+		type: 'Number'
+	},
+	item: {
+		name: {
+			type: 'String'
+		},
+		description: {
+			type: 'String'
+		},
+		cost: {
+			type: 'Number'
+		},
+		type: {
+			type: 'String'
+		},
+		rarity: {
+			type: 'String'
+		},
+		upcoming: {
+			type: 'Boolean'
+		},
+		costmeticId: {
+			type: 'String'
+		},
+		images: {
+			icon: {
+				type: 'String'
+			},
+			featured: {
+				type: 'String'
+			},
+			background: {
+				type: 'String'
+			},
+			information: {
+				type: 'String'
+			}
+		},
+		obtained: {
+			type: 'Object'
+		},
+		obtained_type: {
+			type: 'String'
+		},
+		ratings: {
+			avgStars: {
+				type: 'Number'
+			},
+			totalPoints: {
+				type: 'Number'
+			},
+			numberVotes: {
+				type: 'Number'
+			}
+		}
+	}
 })
 
 const Item = mongoose.model('Item', ItemSchema)

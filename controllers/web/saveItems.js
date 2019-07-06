@@ -11,14 +11,10 @@ module.exports = async (req, res) => {
 
     let saveItem = item => {
         Item.findOneAndUpdate({ itemId: item.itemId },
-            item , {
+            item, {
                 upsert: true, new: true, rawResult: true
             }
-        ).catch(makeLogMessage)
-    }
-
-    let makeLogMessage = message => {
-        console.log(message)
+        )
     }
 
     let handleSuccess = body => {
@@ -26,6 +22,7 @@ module.exports = async (req, res) => {
         items.forEach(item => {
             saveItem(item)
         })
+        res.render('layouts/items-save.html')
     }
 
     request(URL, (error, response, body) => {

@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 const UserFriendSchema = new mongoose.Schema({
-    username: String,
-    accountId: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         require: true,
     },
+    username: String,
+    accountId: String,
     stats: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserStats',

@@ -13,14 +13,14 @@ module.exports = async (req, res) => {
     }
 
     let createFriend = data => {
-        UserFriend.create({
-            user: req.session.userId,
-            accountId: JSON.parse(data).uid,
-            ...req.body,
-        }).then(handleSuccess, handleError)
+        UserFriend.findOneAndUpdate({ username: req.body.username },
+            { user: req.session.userId, accountId: JSON.parse(data).uid }, {
+                upsert: true, new: true, runValidators: true, rawResult: true
+            }
+        ).then(handleSuccess, handleError)
     }
 
-    let { username }  = req.body
+    let { username } = req.body
     let URL = `https://fortnite-public-api.theapinetwork.com/prod09/users/id?username=${username}`
 
     await request(URL, (error, response, body) => {

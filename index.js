@@ -71,7 +71,7 @@ const itemsSaveController = require('./controllers/web/saveItems')
 const getUserStatsController = require('./controllers/web/getUserStats')
 const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
 const getChartsController = require('./controllers/web/get-charts-controller')
-const getChartsOverallController = require('./controllers/web/getChartsOverallController')
+const getChartsOverallController = require('./controllers/web/get-charts-overall-controller')
 
 const loginController = require('./controllers/auth/loginController')
 const loginUserController = require('./controllers/auth/loginUserController')

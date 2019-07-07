@@ -62,7 +62,7 @@ const createUserStatsApiController = require('./controllers/api/createUserStatsA
 const createFriendApiController = require('./controllers/api/createFriendApi')
 const deleteFriendApiController = require('./controllers/api/deleteFriendApi')
 
-const indexController = require('./controllers/web/indexController')
+const indexController = require('./controllers/web/index-controller')
 const upcomingItemsController = require('./controllers/web/upcomingItems')
 const itemDetailController = require('./controllers/web/itemDetail')
 const storeItemsController = require('./controllers/web/storeItems')

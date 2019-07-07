@@ -69,7 +69,7 @@ const storeItemsController = require('./controllers/web/storeItems')
 const itemsListController = require('./controllers/web/itemList')
 const itemsSaveController = require('./controllers/web/saveItems')
 const getUserStatsController = require('./controllers/web/get-user-stats')
-const getUserStatsSubmitController = require('./controllers/web/getUserStatsSubmit')
+const getUserStatsSubmitController = require('./controllers/web/get-user-stats-submit')
 const getChartsController = require('./controllers/web/get-charts-controller')
 const getChartsOverallController = require('./controllers/web/get-charts-overall-controller')
 

@@ -10,8 +10,18 @@ module.exports = async (req, res) => {
             `https://fortnite-public-api.theapinetwork.com/prod09/users/public/br_stats_v2?user_id=${accountId}`
 
         await request(endpoint, (err, response, body) => {
+            data = JSON.parse(body)
             if (!err) {
-                UserStats.create({body}, (err, stats) => {
+                UserStats.create({
+                    username: data.epicName, // TODO: Validate this
+                    accountId: data.accountId,
+                    fnApiId: data.fnApiId,
+                    epicName: data.epicName,
+                    seasonWindow: data.seasonWindow,
+                    devices: data.devices,
+                    data: data.data,
+                    overallData: data.overallData,
+                }, (err, stats) => {
                     if (!err) {
                         friend.stats = stats._id
                         friend.save()
@@ -33,5 +43,5 @@ module.exports = async (req, res) => {
         }
     })
 
-    res.redirect('back')
+    res.redirect('/charts/overall/friends/')
 }

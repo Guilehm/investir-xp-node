@@ -63,15 +63,19 @@ const createFriendApiController = require('./controllers/api/friend-create-api')
 const deleteFriendApiController = require('./controllers/api/friend-delete-api')
 
 const indexController = require('./controllers/web/index-controller')
+
 const upcomingItemsController = require('./controllers/web/item-upcoming')
 const itemDetailController = require('./controllers/web/item-detail')
 const storeItemsController = require('./controllers/web/item-store')
 const itemsListController = require('./controllers/web/item-list')
 const itemsSaveController = require('./controllers/web/item-list-save')
+
 const getUserStatsController = require('./controllers/web/get-user-stats')
 const getUserStatsSubmitController = require('./controllers/web/get-user-stats-submit')
 const getChartsController = require('./controllers/web/get-charts-controller')
 const getChartsOverallController = require('./controllers/web/get-charts-overall-controller')
+
+const userFriendListController = require('./controllers/web/user-friend-list')
 
 const loginController = require('./controllers/auth/login-controller')
 const loginUserController = require('./controllers/auth/user-login-controller')
@@ -98,6 +102,8 @@ app.get('/items/store/', cache(1 * 60), storeItemsController)
 app.get('/items/list/', cache(1 * 60), itemsListController)
 app.get('/items/save/', itemsSaveController)
 app.get('/items/:id/', cache(10 * 60), itemDetailController)
+
+app.get('/user/friend/list/', cache(3 * 60), userFriendListController)
 
 app.get('/auth/login/', loginController)
 app.post('/auth/login/', loginUserController)

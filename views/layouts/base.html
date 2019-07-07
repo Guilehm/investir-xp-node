@@ -54,6 +54,9 @@
 							<ul class="sub-menu">
 								<li><a href="/charts/overall/">Gráficos</a></li>
 								<li><a href="/charts/">Gráficos (por modo)</a></li>
+								{% if isAuthenticated %}
+									<li><a href="/charts/">Meus Amigos</a></li>
+								{% endif %}
 							</ul>
 						</li>
 						<li><a href="#">Itens</a>
@@ -62,6 +65,13 @@
 								<li><a href="/items/store/">Loja</a></li>
 							</ul>
 						</li>
+						{% if isAuthenticated %}
+						<li><a href="#">Perfil</a>
+							<ul class="sub-menu">
+								<li><a href="/user/friend/list/">Amigos</a>
+							</ul>
+						</li>
+						{% endif %}
 					</ul>
 				</nav>
 			</div>

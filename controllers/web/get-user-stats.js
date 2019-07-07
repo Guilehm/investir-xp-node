@@ -36,6 +36,7 @@ module.exports = async (req, res) => {
         res.render('layouts/user-stats-detail', {
             userStats: userStats,
             userData: data,
+            isAuthenticated: req.session.userId
         })
     }
 

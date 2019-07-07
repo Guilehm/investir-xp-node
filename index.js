@@ -73,11 +73,11 @@ const getUserStatsSubmitController = require('./controllers/web/get-user-stats-s
 const getChartsController = require('./controllers/web/get-charts-controller')
 const getChartsOverallController = require('./controllers/web/get-charts-overall-controller')
 
-const loginController = require('./controllers/auth/loginController')
-const loginUserController = require('./controllers/auth/loginUserController')
-const createUserController = require('./controllers/auth/createUserController')
-const storeUserController = require('./controllers/auth/storeUserController')
-const logoutUserController = require('./controllers/auth/logoutUserController')
+const loginController = require('./controllers/auth/login-controller')
+const loginUserController = require('./controllers/auth/user-login-controller')
+const createUserController = require('./controllers/auth/user-create-controller')
+const storeUserController = require('./controllers/auth/user-store-controller')
+const logoutUserController = require('./controllers/auth/user-logout-controller')
 
 
 app.get('/', cache(10 * 60), indexController)

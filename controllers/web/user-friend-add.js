@@ -4,6 +4,11 @@ const request = require('request')
 module.exports = async (req, res) => {
     let handleSuccess = user => {
         // TODO: Add messages
+
+        let hostname = req.headers.host
+        let protocol = req.connection.encrypted ? 'https' : 'http'
+        let path = `${protocol}://${hostname}/user/friend/stats/update/`
+        request.get(path)
         res.redirect('/user/friend/list')
     }
 

@@ -77,6 +77,7 @@ const getChartsOverallController = require('./controllers/web/get-charts-overall
 
 const userFriendListController = require('./controllers/web/user-friend-list')
 const userFriendAddController = require('./controllers/web/user-friend-add')
+const userFriendUpdateStatsController = require('./controllers/web/user-friend-update-stats')
 
 const loginController = require('./controllers/auth/login-controller')
 const loginUserController = require('./controllers/auth/user-login-controller')
@@ -106,6 +107,7 @@ app.get('/items/:id/', cache(10 * 60), itemDetailController)
 
 app.get('/user/friend/list/', userFriendListController)
 app.post('/user/friend/add/', userFriendAddController)
+app.get('/user/friend/stats/update/', userFriendUpdateStatsController)
 
 app.get('/auth/login/', loginController)
 app.post('/auth/login/', loginUserController)

@@ -1,0 +1,315 @@
+{% extends 'layouts/base.html' %}
+
+{% block header_imports %}
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+{% endblock %}
+
+{% block hero %}
+    <section class="page-top-section set-bg" data-setbg="/img/page-top-bg/6.jpg">
+        <div class="page-info">
+            <h2>Gráficos</h2>
+            <div class="site-breadcrumb">
+                <a>Estatísticas</a> /
+                <span>Amigos</span>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+<style>
+    .chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+
+<div class="container">
+    <h2 class="display-5 text-center my-5 ">geral</h2>
+    <p><a class="text-dark" href="/user/friend/stats/update/">atualizar dados</a></p>
+    <div class="row">
+        <div class="col-md-6">
+            <h6 class="text-center">kills</h6>
+            <div id="chartKills" class="chartdiv"></div>
+        </div>
+        <div class="col-md-6">
+            <h6 class="text-center">kd</h6>
+            <div id="chartKd" class="chartdiv"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h6 class="text-center">vitórias</h6>
+            <div id="chartWins" class="chartdiv"></div>
+        </div>
+        <div class="col-md-6">
+            <h6 class="text-center">partidas</h6>
+            <div id="chartMatches" class="chartdiv"></div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script>
+    // Themes begin
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+    
+    // Create chart instance
+    var chartKills = am4core.create("chartKills", am4charts.XYChart);
+    chartKills.scrollbarX = new am4core.Scrollbar();
+
+
+    
+    // Add data
+    chartKills.data = [
+        {% for friend in friendList %}
+        {
+            "player": "{{friend.username}}",
+            "kills": {{ friend.stats.overallData.defaultModes.kills }}
+        },
+        {% endfor %}
+    ];
+
+    
+    // Create axes
+    var categoryAxis = chartKills.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "player";
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.renderer.minGridDistance = 30;
+    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+    categoryAxis.renderer.labels.template.verticalCenter = "middle";
+    categoryAxis.renderer.labels.template.rotation = 90;
+    categoryAxis.tooltip.disabled = true;
+    categoryAxis.renderer.minHeight = 110;
+    
+    var valueAxis = chartKills.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.renderer.minWidth = 50;
+    
+    // Create series
+    var series = chartKills.series.push(new am4charts.ColumnSeries());
+    series.sequencedInterpolation = true;
+    series.dataFields.valueY = "kills";
+    series.dataFields.categoryX = "player";
+    series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+    series.columns.template.strokeWidth = 0;
+    
+    series.tooltip.pointerOrientation = "vertical";
+    
+    series.columns.template.column.cornerRadiusTopLeft = 10;
+    series.columns.template.column.cornerRadiusTopRight = 10;
+    series.columns.template.column.fillOpacity = 0.8;
+    
+    // on hover, make corner radiuses bigger
+    var hoverState = series.columns.template.column.states.create("hover");
+    hoverState.properties.cornerRadiusTopLeft = 0;
+    hoverState.properties.cornerRadiusTopRight = 0;
+    hoverState.properties.fillOpacity = 1;
+    
+    series.columns.template.adapter.add("fill", function(fill, target) {
+        return chartKills.colors.getIndex(target.dataItem.index + 7);
+    });
+    
+    // Cursor
+    chartKills.cursor = new am4charts.XYCursor();
+</script>
+
+<script>
+    // Themes begin
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+    
+    // Create chart instance
+    var chartKd = am4core.create("chartKd", am4charts.XYChart);
+    chartKd.scrollbarX = new am4core.Scrollbar();
+
+
+    
+    // Add data
+    chartKd.data = [
+        {% for friend in friendList %}
+        {
+            "player": "{{friend.username}}",
+            "kd": {{ ( friend.stats.overallData.defaultModes.kills / friend.stats.overallData.defaultModes.matchesplayed) | round(2)}}
+        },
+        {% endfor %}
+    ];
+
+    
+    // Create axes
+    var categoryAxis = chartKd.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "player";
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.renderer.minGridDistance = 30;
+    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+    categoryAxis.renderer.labels.template.verticalCenter = "middle";
+    categoryAxis.renderer.labels.template.rotation = 90;
+    categoryAxis.tooltip.disabled = true;
+    categoryAxis.renderer.minHeight = 110;
+    
+    var valueAxis = chartKd.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.renderer.minWidth = 50;
+    
+    // Create series
+    var series = chartKd.series.push(new am4charts.ColumnSeries());
+    series.sequencedInterpolation = true;
+    series.dataFields.valueY = "kd";
+    series.dataFields.categoryX = "player";
+    series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+    series.columns.template.strokeWidth = 0;
+    
+    series.tooltip.pointerOrientation = "vertical";
+    
+    series.columns.template.column.cornerRadiusTopLeft = 10;
+    series.columns.template.column.cornerRadiusTopRight = 10;
+    series.columns.template.column.fillOpacity = 0.8;
+    
+    // on hover, make corner radiuses bigger
+    var hoverState = series.columns.template.column.states.create("hover");
+    hoverState.properties.cornerRadiusTopLeft = 0;
+    hoverState.properties.cornerRadiusTopRight = 0;
+    hoverState.properties.fillOpacity = 1;
+    
+    series.columns.template.adapter.add("fill", function(fill, target) {
+        return chartKd.colors.getIndex(target.dataItem.index + 7);
+    });
+    
+    // Cursor
+    chartKd.cursor = new am4charts.XYCursor();
+</script>
+
+<script>
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+        
+        // Create chart instance
+        var chartWins = am4core.create("chartWins", am4charts.XYChart);
+        chartWins.scrollbarX = new am4core.Scrollbar();
+    
+    
+        
+        // Add data
+        chartWins.data = [
+            {% for friend in friendList %}
+            {
+                "player": "{{friend.username}}",
+                "wins": {{friend.stats.overallData.defaultModes.placetop1 }}
+            },
+            {% endfor %}
+        ];
+    
+        
+        // Create axes
+        var categoryAxis = chartWins.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "player";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
+        categoryAxis.renderer.labels.template.horizontalCenter = "right";
+        categoryAxis.renderer.labels.template.verticalCenter = "middle";
+        categoryAxis.renderer.labels.template.rotation = 90;
+        categoryAxis.tooltip.disabled = true;
+        categoryAxis.renderer.minHeight = 110;
+        
+        var valueAxis = chartWins.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.minWidth = 50;
+        
+        // Create series
+        var series = chartWins.series.push(new am4charts.ColumnSeries());
+        series.sequencedInterpolation = true;
+        series.dataFields.valueY = "wins";
+        series.dataFields.categoryX = "player";
+        series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+        series.columns.template.strokeWidth = 0;
+        
+        series.tooltip.pointerOrientation = "vertical";
+        
+        series.columns.template.column.cornerRadiusTopLeft = 10;
+        series.columns.template.column.cornerRadiusTopRight = 10;
+        series.columns.template.column.fillOpacity = 0.8;
+        
+        // on hover, make corner radiuses bigger
+        var hoverState = series.columns.template.column.states.create("hover");
+        hoverState.properties.cornerRadiusTopLeft = 0;
+        hoverState.properties.cornerRadiusTopRight = 0;
+        hoverState.properties.fillOpacity = 1;
+        
+        series.columns.template.adapter.add("fill", function(fill, target) {
+            return chartWins.colors.getIndex(target.dataItem.index + 7);
+        });
+        
+        // Cursor
+        chartWins.cursor = new am4charts.XYCursor();
+    </script>
+
+
+<script>
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+        
+        // Create chart instance
+        var chartMatches = am4core.create("chartMatches", am4charts.XYChart);
+        chartMatches.scrollbarX = new am4core.Scrollbar();
+    
+    
+        
+        // Add data
+        chartMatches.data = [
+            {% for friend in friendList %}
+            {
+                "player": "{{friend.username}}",
+                "wins": {{friend.stats.overallData.defaultModes.matchesplayed }}
+            },
+            {% endfor %}
+        ];
+    
+        
+        // Create axes
+        var categoryAxis = chartMatches.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "player";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
+        categoryAxis.renderer.labels.template.horizontalCenter = "right";
+        categoryAxis.renderer.labels.template.verticalCenter = "middle";
+        categoryAxis.renderer.labels.template.rotation = 90;
+        categoryAxis.tooltip.disabled = true;
+        categoryAxis.renderer.minHeight = 110;
+        
+        var valueAxis = chartMatches.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.minWidth = 50;
+        
+        // Create series
+        var series = chartMatches.series.push(new am4charts.ColumnSeries());
+        series.sequencedInterpolation = true;
+        series.dataFields.valueY = "wins";
+        series.dataFields.categoryX = "player";
+        series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+        series.columns.template.strokeWidth = 0;
+        
+        series.tooltip.pointerOrientation = "vertical";
+        
+        series.columns.template.column.cornerRadiusTopLeft = 10;
+        series.columns.template.column.cornerRadiusTopRight = 10;
+        series.columns.template.column.fillOpacity = 0.8;
+        
+        // on hover, make corner radiuses bigger
+        var hoverState = series.columns.template.column.states.create("hover");
+        hoverState.properties.cornerRadiusTopLeft = 0;
+        hoverState.properties.cornerRadiusTopRight = 0;
+        hoverState.properties.fillOpacity = 1;
+        
+        series.columns.template.adapter.add("fill", function(fill, target) {
+            return chartMatches.colors.getIndex(target.dataItem.index + 7);
+        });
+        
+        // Cursor
+        chartMatches.cursor = new am4charts.XYCursor();
+    </script>
+{% endblock %}

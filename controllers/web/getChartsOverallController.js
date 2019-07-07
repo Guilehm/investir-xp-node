@@ -19,6 +19,7 @@ module.exports = async (req, res) => {
                 }
             });
         }
+        console.log(typeof friendsData)
         return res.render('layouts/chart-overall-list', {
             friendList: friendsData,
             friends: friends,

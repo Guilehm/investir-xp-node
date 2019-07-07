@@ -56,11 +56,11 @@ app.use('*', (req, res, next) => {
     next()
 })
 
-const getUserIdApiController = require('./controllers/api/getUserIdApi')
-const getUserStatsApiController = require('./controllers/api/getUserStatsApi')
-const createUserStatsApiController = require('./controllers/api/createUserStatsApi')
-const createFriendApiController = require('./controllers/api/createFriendApi')
-const deleteFriendApiController = require('./controllers/api/deleteFriendApi')
+const getUserIdApiController = require('./controllers/api/user-id-get-api')
+const getUserStatsApiController = require('./controllers/api/user-stats-get-api')
+const createUserStatsApiController = require('./controllers/api/user-stats-create-api')
+const createFriendApiController = require('./controllers/api/friend-create-api')
+const deleteFriendApiController = require('./controllers/api/friend-delete-api')
 
 const indexController = require('./controllers/web/index-controller')
 const upcomingItemsController = require('./controllers/web/item-upcoming')
